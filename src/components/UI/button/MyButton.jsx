@@ -1,11 +1,11 @@
 import React from "react";
 import classes from "./MyButton.module.css";
 
-const MyButton = () => {
+const MyButton = ({children, ...prors}) => {
 
     return (
-        <button className={classes.myBtn} >
-
+        <button { ...prors } className={classes.myBtn} >
+            {children}
         </button>
     );
 };
