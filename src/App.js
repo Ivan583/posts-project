@@ -24,6 +24,13 @@ function App() {
       <div className="App">
         <PostForm create={createNewPost} />
 
+        <div>
+          <select>
+            <option value="value1">По названию</option>
+            <option value="value1">По описанию</option>
+          </select>
+        </div>
+
         <PostList
           posts={posts} 
           title="Posts List" />
