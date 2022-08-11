@@ -3,6 +3,11 @@ import PostItem from './PostItem';
 
 const PostList = ({posts, title}) => {
 
+    if (!posts.length)
+    return (
+        <h1>Empty list</h1>
+    )
+
     return (
         <div>
             <h1>{ title }</h1>
