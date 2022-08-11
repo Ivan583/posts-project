@@ -11,7 +11,13 @@ function App() {
 
   return (
     <div className="App">
-      <PostList posts={posts} />
+      <form>
+        <input type="text" placeholder="title" />
+        <input type="text" placeholder="body" />
+        <button>Create post</button>
+      </form>
+
+      <PostList posts={posts} title="Posts List" />
     </div>
   );
 }
