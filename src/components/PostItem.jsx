@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import MyButton from "./UI/button/MyButton";
+import Cont from "./context";
 
 const PostItem = (props) => {
+    const {removePost} = useContext(Cont);
 
     return (
         <div className='post'>
@@ -12,7 +14,7 @@ const PostItem = (props) => {
             </div>
             </div>
             <div className='post__btns'>
-                <MyButton onClick={() => props.remove(props.post)} >Remove post</MyButton>
+                <MyButton onClick={removePost.bind(null, props.post)} >Remove post</MyButton>
             </div>
       </div>
     );

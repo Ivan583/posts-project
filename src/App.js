@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Cont from './components/context';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
 
@@ -19,14 +20,15 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <PostForm create={createNewPost} />
+    <Cont.Provider value={{removePost}}>
+      <div className="App">
+        <PostForm create={createNewPost} />
 
-      <PostList
-       posts={posts} 
-       title="Posts List"
-       remove={removePost} />
-    </div>
+        <PostList
+          posts={posts} 
+          title="Posts List" />
+      </div>
+    </Cont.Provider>
   );
 }
 
