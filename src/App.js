@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>My React App</h1>
-        <PostItem />
+        <PostItem post={{id: 1, title: "Hotel", body: "We are living in the Heart-Break Hotel"}} />
     </div>
   );
 }
