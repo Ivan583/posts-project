@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <form>
-        <input type="text" placeholder="title" />
-        <input type="text" placeholder="body" />
+        <input type="text" placeholder="Заголовок поста" />
+        <input type="text" placeholder="Описание поста" />
         <button>Create post</button>
       </form>
 
