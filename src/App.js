@@ -3,8 +3,7 @@ import './App.css';
 import Cont from './components/context';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
-import MySelect from './components/select/MySelect';
-import MyInput from './components/UI/input/MyInput';
+import PostFilter from './components/PostFilter';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -13,23 +12,21 @@ function App() {
     {id: 3, title: "Forest", body: "He was a SteppenWolf"},
   ]);
 
-  const [selectedSort, setSelectedSort] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filter, setFilter] = useState({sort: '', query: ''});
 
   // отсортированный массив
   const sortedPosts = useMemo(() => {
-    console.log('getSortedPosts')
-    if (selectedSort) {
+    if (filter.sort) {
       return [...posts].sort((a, b) => 
-      a[selectedSort].localeCompare(b[selectedSort]));
+      a[filter.sort].localeCompare(b[filter.sort]));
     }
     return posts;
-  }, [selectedSort, posts]);
+  }, [filter.sort, posts]);
 
   const sortedAndSearchedPosts = useMemo(() => {
     return sortedPosts.filter(post => 
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()));
-  }, [searchQuery, sortedPosts]);
+      post.title.toLowerCase().includes(filter.query.toLowerCase()));
+  }, [filter.query, sortedPosts]);
  
   const createNewPost = newPost => {
     setPosts([...posts, newPost]);
@@ -39,31 +36,12 @@ function App() {
     setPosts(posts.filter(p => p.id !== post.id));
   };
 
-  const sortPosts = sort => {
-    setSelectedSort(sort);
-  };
-
   return (
     <Cont.Provider value={{removePost}}>
       <div className="App">
         <PostForm create={createNewPost} />
 
-        <div>
-          <MyInput 
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Поиск..." />
-
-          <MySelect
-            value={selectedSort}
-            onChange={sortPosts}
-            defaultValue="Сортировка" 
-            options={[
-              {value: 'title', name: 'По названию'},
-              {value: 'body', name: 'По описанию'}
-            ]}
-             />
-        </div>
+        <PostFilter filter={filter} setFilter={setFilter} />
 
         <PostList
           posts={sortedAndSearchedPosts} 
