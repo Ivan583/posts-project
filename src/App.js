@@ -5,6 +5,7 @@ import PostForm from './components/PostForm';
 import PostList from './components/PostList';
 import PostFilter from './components/PostFilter';
 import { usePosts } from './hooks/usePosts';
+import MyModal from './components/UI/modal/MyModal';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -27,7 +28,9 @@ function App() {
   return (
     <Cont.Provider value={{removePost}}>
       <div className="App">
-        <PostForm create={createNewPost} />
+        <MyModal>
+          <PostForm create={createNewPost} />
+        </MyModal>        
 
         <PostFilter filter={filter} setFilter={setFilter} />
 
