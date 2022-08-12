@@ -6,6 +6,7 @@ import PostList from './components/PostList';
 import PostFilter from './components/PostFilter';
 import { usePosts } from './hooks/usePosts';
 import MyModal from './components/UI/modal/MyModal';
+import MyButton from './components/UI/button/MyButton';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -15,6 +16,7 @@ function App() {
   ]);
 
   const [filter, setFilter] = useState({sort: '', query: ''});
+  const [modal, setModal] = useState(false);
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
  
   const createNewPost = newPost => {
@@ -28,7 +30,11 @@ function App() {
   return (
     <Cont.Provider value={{removePost}}>
       <div className="App">
-        <MyModal>
+        <MyButton onClick={() => setModal(true)} >
+          Create post
+        </MyButton>
+
+        <MyModal visible={modal} setVisible={setModal} >
           <PostForm create={createNewPost} />
         </MyModal>        
 
