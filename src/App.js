@@ -4,6 +4,7 @@ import Cont from './components/context';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
 import MySelect from './components/select/MySelect';
+import MyInput from './components/UI/input/MyInput';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -13,6 +14,7 @@ function App() {
   ]);
 
   const [selectedSort, setSelectedSort] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
  
   const createNewPost = newPost => {
     setPosts([...posts, newPost]);
@@ -33,6 +35,11 @@ function App() {
         <PostForm create={createNewPost} />
 
         <div>
+          <MyInput 
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            placeholder="Поиск..." />
+
           <MySelect
             value={selectedSort}
             onChange={sortPosts}
